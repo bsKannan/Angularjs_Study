@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>AngularJs table</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+        </script>
+        <style>
+        table, th, td {
+            border: 1ox solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+        </style>
+    </head>
+    <body>
+        <h2>AngularJS Sample Application</h2>
+        <div ng-app = "mainApp" ng-controller = "studentController">
+
+            <table border = "0">
+                <tr>
+                    <td>Enter first Name:</td>
+                    <td><input type="text" ng-model = "student.fName"></td>
+                </tr>
+                <tr>
+                    <td>Enter last Name:</td>
+                    <td><input type="text" ng-model = "student.lName"></td>
+                </tr>
+                <tr>
+                    <td>Name: </td>
+                    <td>{{student.fullName()}}</td>
+                </tr>
+                <tr>
+                    <td>Subject:</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Marks</th>
+                </tr>
+    
+                <tr ng-repeat = "subject in student.subjects">
+                    <td>{{subject.name}}</td>
+                    <td>{{subject.marks}}</td>
+                </tr>
+            </table>
+        </div>
+       <script>
+           var mainApp=  angular.module("mainApp",[]);
+
+           mainApp.controller('studentController', function($scope){
+               $scope.student = {
+                   fName: "Kannan",
+                   lName: "Sridhar",
+                   
+                   subjects :[
+                   {name:'Physics',marks:70},
+                   {name:'Chemistry',marks:80},
+                   {name:'Math',marks:100},
+                   {name:'English',marks:75},
+                   {name:'Tamil',marks:97}
+                   ],
+
+               fullName: function(){
+                   var studentObject;
+                   studentObject = $scope.student;
+                   return studentObject.fName + " " + studentObject.lName;
+
+               }
+            }
+           })
+       </script>
+    </body>
+</html>
